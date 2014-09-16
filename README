@@ -1,0 +1,17 @@
+Scraper for NFL.com Fantasy Football
+
+Environment Variables:
+
+export NFL_LOGIN="email@email.com"
+export NFL_PWD="password"
+export NFL_URL="http://fantasy.nfl.com/league/xxxxxxx/team/y" (Where x = your league number and y = your team number)
+export NFL_PP="http://fantasy.nfl.com/league/xxxxxxx/players" (x = your league number)
+
+Example Uses:
+
+scraper = NFLFantasyScraper.new
+scraper.login (login to your account)
+my_team = scraper.my_team (gets full names of all players on your team)
+puts my_team
+available = scraper.available_players (gets first three pages of available players sorted by fantasy points scored this season)
+puts available
