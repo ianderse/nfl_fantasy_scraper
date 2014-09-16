@@ -17,3 +17,7 @@ my_team = scraper.my_team (gets full names of all players on your team)
 puts my_team
 available = scraper.available_players (gets first three pages of available players sorted by fantasy points scored this season)
 puts available
+
+Contributing:
+
+Feel free to fork and send pull requests!  Please also send feature requests (open an issue).
