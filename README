@@ -2,6 +2,8 @@ Scraper for NFL.com Fantasy Football
 
 Environment Variables:
 
+Set these in your terminal:
+
 export NFL_LOGIN="email@email.com"
 export NFL_PWD="password"
 export NFL_URL="http://fantasy.nfl.com/league/xxxxxxx/team/y" (Where x = your league number and y = your team number)
