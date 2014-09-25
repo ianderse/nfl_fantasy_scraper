@@ -20,3 +20,8 @@ puts scraper.print_table (prints out nicely formatted table of all team informat
 Contributing:
 
 Feel free to fork and send pull requests.  Please also send feature requests that you would like to see implemented (open an issue).
+
+TODO:
+- Add projected points for each player on team
+- Add projected points for each player in available player list
+- Projected points should come from Fantasy Football Nerd (because NFL.com's projections are terrible)
