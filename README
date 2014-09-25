@@ -13,11 +13,10 @@ Example Uses:
 
 scraper = NFLFantasyScraper.new
 scraper.login (login to your account)
-my_team = scraper.my_team (gets full names of all players on your team)
-puts my_team
-available = scraper.available_players (gets first three pages of available players sorted by fantasy points scored this season)
-puts available
+puts scraper.my_team (prints out full names of all players on your team as well as their opponents for next week and current points scored)
+puts scraper.available_players (prints out first three pages of available players sorted by fantasy points scored this season)
+puts scraper.print_table (prints out nicely formatted table of all team information from my_team method)
 
 Contributing:
 
-Feel free to fork and send pull requests!  Please also send feature requests (open an issue).
+Feel free to fork and send pull requests.  Please also send feature requests that you would like to see implemented (open an issue).
