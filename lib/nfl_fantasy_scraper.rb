@@ -1,4 +1,5 @@
 require 'mechanize'
+require 'terminal-table'
 
 NFL_URL = "#{ENV['NFL_URL']}"
 NFL_PWD = "#{ENV['NFL_PWD']}"
@@ -22,13 +23,43 @@ class NFLFantasyScraper
 		@page = @mechanize.get(NFL_PP)
 	end
 
+	def print_table
+		rows = []
+		my_team.each do |player|
+			rows << [player[0], player[1][0], player[1][1]]
+		end
+		table = Terminal::Table.new :headings => ['Player', 'Opponent', 'Current Points'], :rows => rows
+	end
+
 	def my_team
+		Hash[my_team_player_names.zip(join_stats)]
+	end
+
+	def my_team_player_names
 		team_page = @mechanize.get(NFL_URL)
 
 		players = team_page.search('.tableType-player .playerNameAndInfo').map do |td|
 		  td.text.split(' ')[0..1].join(' ')
 		end
 		players - [" ", nil, "Offense", "Defense Team", "Kicker"]
+	end
+
+	def scrape_opponents
+		team_page = @mechanize.get(NFL_URL)
+
+		opponents = team_page.search('.tableType-player .playerOpponent').map do |td|
+			td.text
+		end
+		opponents - [" ", nil, "Opp"]
+	end
+
+	def scrape_points
+		team_page = @mechanize.get(NFL_URL)
+
+		points = team_page.search('.tableType-player .statTotal').map do |td|
+			td.text
+		end
+		points - [" ", nil, "Points"]
 	end
 
 	def available_players
@@ -41,6 +72,12 @@ class NFLFantasyScraper
 		players << add_available_players
 
 		players.flatten - [" ", nil]
+	end
+
+	private
+
+	def join_stats
+		scrape_opponents.zip(scrape_points)
 	end
 
 	def next_page
@@ -57,3 +94,7 @@ class NFLFantasyScraper
 	end
 
 end
+
+scraper = NFLFantasyScraper.new
+scraper.login
+puts scraper.print_table
