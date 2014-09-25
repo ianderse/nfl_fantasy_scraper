@@ -94,7 +94,3 @@ class NFLFantasyScraper
 	end
 
 end
-
-scraper = NFLFantasyScraper.new
-scraper.login
-puts scraper.print_table
